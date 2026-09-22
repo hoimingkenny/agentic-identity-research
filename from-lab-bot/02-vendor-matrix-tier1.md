@@ -1,7 +1,7 @@
 # Tier-1 Vendor Matrix: Agentic Identity Binding Points
 
 **Research date:** 2026-09-15  
-**Audience:** Kenny (Security Engineering — IAM + agentic AI; finance/CLSA-relevant)  
+**Audience:** Kenny (Security Engineering — IAM + agentic AI; finance/enterprise-relevant)  
 **Scope:** Deep-dives scored against identity binding points. Docs-only; primary sources preferred.  
 **Status legend:** **GA** | **Preview** | **Announced** | **Doc-only** | **Unclear** (as of research date)
 
@@ -96,7 +96,7 @@ Treat as **two products with a shared protocol story (XAA / ID-JAG)**:
 - **MCP:** Auth for MCP (CIMD registration, resource-scoped tokens) **GA**; Agent SSO answers “XAA agents → apps/MCP”; Okta for AI Agents covers non-XAA agents (**marketing table** in PR — validate licensing).
 - **AuthZ grain:** OAuth scopes + optional FGA for tools; connection policy for XAA — not universal arg-level PEP.
 - **IGA:** Okta for AI Agents — owners, access certifications, approvals, shadow discovery (ISPM/SAM training paths). SailPoint adjacency: complementary IGA; not replaced by Okta.
-- **Finance fit:** Good for broker-dealer SaaS tool access + MCP; require **EA feature flags** clarity (Agent as Principal, XAA) before risk acceptance; split Auth0 (CIAM/dev) vs Okta (workforce) ownership in CLSA-like orgs.
+- **Finance fit:** Good for broker-dealer SaaS tool access + MCP; require **EA feature flags** clarity (Agent as Principal, XAA) before risk acceptance; split Auth0 (CIAM/dev) vs Okta (workforce) ownership in finance-enterprise orgs.
 
 ### Marketing flags
 
@@ -165,7 +165,7 @@ AWS answers **“how does the runtime prove it may call AWS APIs?”** and incre
 - **AuthZ grain:** IAM actions/resources/conditions; DynamoDB leading keys example is solid ABAC; Bedrock KB metadata filter is **not** IAM-enforced (AWS states this caveat).
 - **Audit:** CloudTrail + IdP logs; reconstruct user→agent→resource with correlation IDs — design required.
 - **Kill switch:** Deny IAM, rotate trust, revoke OIDC client, disable AgentCore runtime — operational runbook, not a single “Disable agent” directory button.
-- **Finance fit:** Correct foundation for AWS-hosted trading/research agents’ **cloud API** access; still need Entra/Okta (or Cognito+enterprise federation) for **workforce identity**, and PAM/IGA for privilege & certification. CLSA multi-cloud: Roles Anywhere or external IdP federation into AWS.
+- **Finance fit:** Correct foundation for AWS-hosted trading/research agents’ **cloud API** access; still need Entra/Okta (or Cognito+enterprise federation) for **workforce identity**, and PAM/IGA for privilege & certification. Enterprise multi-cloud: Roles Anywhere or external IdP federation into AWS.
 
 ---
 
@@ -181,7 +181,7 @@ SailPoint **Agentic Fabric** (Identity Security Cloud) emphasizes **discovery, u
 
 ---
 
-## Biggest evidence gaps / blockers (for CLSA-style landing)
+## Biggest evidence gaps / blockers (for finance-enterprise landing)
 
 1. **Cross-vendor “tool/arg” AuthZ** — only Auth0 FGA (and Google UAP “coming soon” messaging) approach tool grain; Entra/AWS/CyberArk mostly scope/resource/ZSP. Finance need: deny `transfer(amount>` …) style — expect **custom PEP**.
 2. **Okta/Auth0 EA surface** — Agent as Principal + XAA limitations (1:1 org/connection, user must pre-exist, rate limits) block “all agents GA” narratives.

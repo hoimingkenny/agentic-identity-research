@@ -1,7 +1,7 @@
 # Executive summary â€” Agentic identity enterprise landing research
 
 **As of:** 2026-09-15  
-**Audience:** Finance/enterprise-applicable (CLSA-relevant) + personal learning  
+**Audience:** Finance/enterprise-applicable + personal learning  
 **Status:** Docs-only research pack v1 (no code/sandbox)
 
 ## Purpose
@@ -65,4 +65,4 @@ No Docker lab, no competing mini-Okta, no NHI inventory product. A thin failureâ
 ## Suggested next research (when you want)
 - Tier-2: SailPoint, Google Agent Identity (SPIFFE), Ping/Cloudflare  
 - Standards skim: MCP auth, XAA/ID-JAG, RFC 8693  
-- CLSA-oriented memo: map current SailPoint + CyberArk + AWS posture to a 90-day pilot  
+- Enterprise-oriented memo: map current SailPoint + CyberArk + AWS posture to a 90-day pilot  
