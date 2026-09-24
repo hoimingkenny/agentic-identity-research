@@ -8,7 +8,7 @@
 
 ## 1. Career intent
 - Shift from full-time general programming toward **IAM + agentic AI** (identity / automation ownership).
-- Dual track: reshape role at CLSA while staying externally marketable.
+- Dual track: reshape role at the enterprise while staying externally marketable.
 - Prefer English for status/research reports; Cantonese OK in chat when preferred.
 
 ## 2. Project purpose (locked as research intent)

@@ -1,6 +1,6 @@
 # AI Agent Architecture Patterns → Identity Binding Map
 
-**Audience:** Enterprise / finance IAM (Kenny — CLSA-relevant)  
+**Audience:** Enterprise / finance IAM (Kenny — finance-relevant)  
 **As-of:** 2026-09-15  
 **Doc type:** Architecture → binding map (docs only)  
 **Method:** Primary sources via WebSearch/WebFetch (2025–2026 preferred). Citations include URLs; dates are publication or last-updated where known, else retrieval date.
@@ -9,16 +9,16 @@
 
 ## 0. Executive framing
 
-Enterprise agent deployments fail identity when they treat “the LLM called a tool” as a single principal. In practice there are **at least four distinct binding surfaces**:
+Enterprise agent deployments fail identity when they treat "the LLM called a tool" as a single principal. In practice there are **at least four distinct binding surfaces**:
 
 1. **Workload / runtime identity** — who is this agent process? (SPIFFE SVID, cloud agent principal, Entra Agent ID, Bedrock workload identity)
 2. **Acts-as / delegation identity** — on whose authority does this call proceed? (user OBO, agent-as-principal, shared service account)
 3. **Tool / action authorization** — which operation on which resource, with which arguments? (OAuth scopes are coarse; AuthZEN/COAZ or API gateway PDP is fine-grained)
-4. **Session / memory isolation** — which user’s context may this runtime see? (multi-user shared memory is the hard case)
+4. **Session / memory isolation** — which user's context may this runtime see? (multi-user shared memory is the hard case)
 
 Finance/regulated implication: audit and SoD require **attributable dual identity** (agent + human/sponsor) on material actions, short-lived constrained tokens, and HITL gates for irreversible or high-value operations. Shadow agents outside IGA break all of the above.
 
-**Uncertainty:** Several cited IETF drafts (AIP, PEDIGREE, WIMSE delegation) and OpenID COAZ-MCP are implementers’ drafts — useful for threat models and design targets, not yet “mandate compliance.”
+**Uncertainty:** Several cited IETF drafts (AIP, PEDIGREE, WIMSE delegation) and OpenID COAZ-MCP are implementers' drafts — useful for threat models and design targets, not yet "mandate compliance."
 
 ---
 
@@ -67,7 +67,7 @@ Finance/regulated implication: audit and SoD require **attributable dual identit
 |---------------|--------------|------------------|
 | Per-agent identity | Each node has its own principal | No shared SA; IAM bindings per agent principal |
 | Delegation hop | Authority must **attenuate**, not inflate | Cryptographic delegation chain (IETF drafts); PDP check per hop |
-| Inter-agent trust | Default trust of “internal” messages = confused deputy | Re-authZ original user intent at each privileged hop |
+| Inter-agent trust | Default trust of "internal" messages = confused deputy | Re-authZ original user intent at each privileged hop |
 | Audit | Full provenance chain | Nested `act` claims + enforced attenuation (RFC 8693 alone is insufficient — see §5) |
 
 **Finance implications:** Sub-agent privilege inflation is the multi-agent form of SoD failure — a low-privilege triage agent must not induce a payments agent to execute without independent authorization of amount, account, and purpose.
@@ -108,7 +108,7 @@ Finance/regulated implication: audit and SoD require **attributable dual identit
 
 **MCP Authorization (2025-11-25 spec):** OAuth 2.1 for HTTP transports; Protected Resource Metadata (RFC 9728); Auth Server Metadata (RFC 8414); Resource Indicators (RFC 8707); PKCE; **token audience binding mandatory**; **token passthrough forbidden**. STDIO should use environment credentials, not this flow. Source: [MCP Authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) (spec date in URL path 2025-11-25).
 
-**Gap:** OAuth scopes do not express “transfer $X from account A to B.” Fine-grained AuthZ needs a PDP.
+**Gap:** OAuth scopes do not express "transfer $X from account A to B." Fine-grained AuthZ needs a PDP.
 
 **COAZ-MCP / AuthZEN:** Maps MCP messages → AuthZEN Subject-Action-Resource-Context. PEP = MCP gateway or server; `subject.id` trust-anchored to token claim (`sub` or designated OBO claim); agent in `context`; fail-closed. Declared mappings via `x-authzen-mapping` in tool `inputSchema`. Source: [COAZ-MCP Draft 1](https://openid.github.io/authzen/authzen-coaz-mcp-binding-1_0.html) (OpenID; normative refs dated 2026). Related: [AuthZEN MCP profile discussion](https://github.com/openid/authzen/issues/429).
 
@@ -148,10 +148,10 @@ Finance/regulated implication: audit and SoD require **attributable dual identit
 |-------|-----------|------------------|-------------------|
 | **User OBO** | Interactive; user-owned SaaS data | Dual: user + agent | Token reuse across users/sessions; over-broad delegated scopes |
 | **Agent-as-principal** | Batch; org-owned data; system automation | Agent (+ sponsor) | Standing privilege; shadow admin |
-| **Shared service account** | Legacy RPA / “bot user” | Ambiguous | **Avoid** in regulated estates — breaks attribution and SoD |
+| **Shared service account** | Legacy RPA / "bot user" | Ambiguous | **Avoid** in regulated estates — breaks attribution and SoD |
 | **Hybrid** | Agent identity for cloud APIs + OBO for user SaaS | Dual-path logging required | Inconsistent policy across paths |
 
-**Google matrix** (own authority vs user-delegated) is a clean reference: 3LO for user-delegated external tools; Agent Identity / 2LO / API key for agent’s own authority — with API keys vaulted in auth manager, not in agent code. Source: [Agent Identity overview](https://docs.cloud.google.com/iam/docs/agent-identity-overview).
+**Google matrix** (own authority vs user-delegated) is a clean reference: 3LO for user-delegated external tools; Agent Identity / 2LO / API key for agent's own authority — with API keys vaulted in auth manager, not in agent code. Source: [Agent Identity overview](https://docs.cloud.google.com/iam/docs/agent-identity-overview).
 
 **AWS:** Token vault binds OAuth tokens to **workload identity + user ID** from inbound JWT — good multi-user isolation pattern if inbound AuthN is JWT-verified. Source: [runtime-oauth](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-oauth.html).
 
@@ -170,8 +170,8 @@ Minimum bar for finance:
 | Failure | Mechanism | Control |
 |---------|-----------|---------|
 | Cross-user memory bleed | Shared vector store / session cache keyed only by agent | Key by `tenant + user + session`; separate encryption keys |
-| Credential reflection | Prior session’s OAuth token or API key left in context window | Never put secrets in LLM context; vault at PEP; Google gateway decrypt pattern |
-| Tool result leakage | Agent A’s tool output cached into Agent B’s prompt | Per-session ephemeral context; TTL wipe |
+| Credential reflection | Prior session's OAuth token or API key left in context window | Never put secrets in LLM context; vault at PEP; Google gateway decrypt pattern |
+| Tool result leakage | Agent A's tool output cached into Agent B's prompt | Per-session ephemeral context; TTL wipe |
 | Multi-tenant MCP | Single MCP connection spanning tenants | Per-tenant servers or strict PEP on arguments (ASI03 / Asana MCP cross-tenant class of bug — secondary reports) |
 
 **Finance:** Cross-user bleed can violate client confidentiality and create insider-trading-adjacent data exposure. Treat memory stores as regulated data stores (access logs, residency, retention).
@@ -193,7 +193,7 @@ Minimum bar for finance:
 ### 4.2 Data residency / egress
 
 - Bind egress to **agent principal** in VPC-SC / firewall / CASB, not only to human user.
-- SaaS connectors: DLP policies may allow connectors that still exfiltrate via “allowed” SaaS → require allowlists of destinations and fields.
+- SaaS connectors: DLP policies may allow connectors that still exfiltrate via "allowed" SaaS → require allowlists of destinations and fields.
 - Browser/RPA agents: highest egress uncertainty — prefer disable for material finance data.
 
 ### 4.3 HITL gates
@@ -227,7 +227,7 @@ OpenID CIBA appears in WIMSE credential-delegation draft as async consent mechan
 ### 5.2 Over-broad tool scopes
 
 - Connector granted `Operations.Execute.All` instead of per-operation scopes (Copilot Studio Entra Agent ID model).
-- MCP client requests all `scopes_supported` (spec’s default strategy for general clients) — mitigate with server-side least privilege and step-up.
+- MCP client requests all `scopes_supported` (spec's default strategy for general clients) — mitigate with server-side least privilege and step-up.
 - RPA robot runs as domain admin.
 
 **Control:** Least privilege at mint + fine-grained PEP on arguments + periodic access reviews in IGA.
@@ -312,12 +312,12 @@ Secondary / vendor narrative (use cautiously):
 
 | Item | Status |
 |------|--------|
-| COAZ-MCP, AIP, PEDIGREE, WIMSE delegation drafts | Implementers’ drafts — design guidance, not settled standards |
+| COAZ-MCP, AIP, PEDIGREE, WIMSE delegation drafts | Implementers' drafts — design guidance, not settled standards |
 | Copilot Studio CA on Agent ID | Documented as end-to-end mainly for Teams; other channels may differ |
 | Google Agent Identity product GA/preview mix | Confirm per surface at deployment time |
 | CSA AIGF | Framework maturity / adoption in finance still early |
 | Exact OWASP ASI numbering / PDF contents | Cited from official download + secondary explainers; download PDF for audit evidence packs |
-| “May 2026” Entra Agent ID cutoff | Per Microsoft Learn at retrieval; re-verify if planning migrations |
+| "May 2026" Entra Agent ID cutoff | Per Microsoft Learn at retrieval; re-verify if planning migrations |
 
 ---
 
