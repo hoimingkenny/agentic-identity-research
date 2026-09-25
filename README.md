@@ -5,9 +5,10 @@ Docs-only research pack. **Employer-agnostic.**
 ## Start here
 
 1. **[LOGIC-CHAIN.md](./LOGIC-CHAIN.md)** — locked 1–5 question spine  
-2. Then follow sections **01 → 05** in order  
-3. Optional depth: **06 vendors**, **07 landing**  
-4. **[appendix/](./appendix/)** — digests, legacy notes, deprecated duplicates  
+2. **[DOC-INDEX.md](./DOC-INDEX.md)** — each doc's question + one-line summary  
+3. Then follow sections **01 → 05** in order  
+4. Optional depth: **06 vendors**, **07 landing**  
+5. **[appendix/](./appendix/)** — digests, legacy notes, deprecated duplicates  
 
 ## Logic chain (summary)
 
