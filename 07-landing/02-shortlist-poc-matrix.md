@@ -78,7 +78,7 @@ Add/remove columns freely; do not score vendors until product claims are verifie
 
 ## D. Disqualifiers (automatic fail for this program)
 
-1. "AI security" pitch that only covers prompt/injection/container (→ AccuKnox lane)  
+1. “AI security” pitch that only covers prompt/injection/container (→ AccuKnox lane)  
 2. Requires **IIQ → ISC migration** as prerequisite for agent features  
 3. Only AD-group / app-login controls with no tool-level path  
 4. Standing long-lived shared secrets as the only agent credential model  
