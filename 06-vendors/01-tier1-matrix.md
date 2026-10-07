@@ -1,7 +1,7 @@
 # Tier-1 Vendor Matrix: Agentic Identity Binding Points
 
 **Research date:** 2026-09-15  
-**Audience:** Kenny (Security Engineering — IAM + agentic AI; finance/enterprise-relevant)  
+**Audience:** Kenny (Security Engineering — IAM + agentic AI; finance/finance-relevant)  
 **Scope:** Deep-dives scored against identity binding points. Docs-only; primary sources preferred.  
 **Status legend:** **GA** | **Preview** | **Announced** | **Doc-only** | **Unclear** (as of research date)
 
@@ -165,7 +165,7 @@ AWS answers **“how does the runtime prove it may call AWS APIs?”** and incre
 - **AuthZ grain:** IAM actions/resources/conditions; DynamoDB leading keys example is solid ABAC; Bedrock KB metadata filter is **not** IAM-enforced (AWS states this caveat).
 - **Audit:** CloudTrail + IdP logs; reconstruct user→agent→resource with correlation IDs — design required.
 - **Kill switch:** Deny IAM, rotate trust, revoke OIDC client, disable AgentCore runtime — operational runbook, not a single “Disable agent” directory button.
-- **Finance fit:** Correct foundation for AWS-hosted trading/research agents’ **cloud API** access; still need Entra/Okta (or Cognito+enterprise federation) for **workforce identity**, and PAM/IGA for privilege & certification. Enterprise multi-cloud: Roles Anywhere or external IdP federation into AWS.
+- **Finance fit:** Correct foundation for AWS-hosted trading/research agents’ **cloud API** access; still need Entra/Okta (or Cognito+enterprise federation) for **workforce identity**, and PAM/IGA for privilege & certification. the enterprise multi-cloud: Roles Anywhere or external IdP federation into AWS.
 
 ---
 

@@ -1,4 +1,4 @@
-# Management 1-pager: Why L4 Agentic Identity (enterprise finance context)
+# Management 1-pager: Why L4 Agentic Identity (the enterprise / enterprise finance context)
 
 **Audience:** IAM/Sec peers + upward budget narrative  
 **Date:** 2026-09-22  
@@ -9,13 +9,13 @@
 
 ## One-line ask
 
-Keep **SailPoint IdentityIQ** for humans and classic access. Keep **AccuKnox** for AI/runtime security. Fund a **new L4 agentic identity / IGA** capability (SailPoint Agentic Fabric and/or peers) because agents are a new identity type that today's IIQ + AD-group + Keycloak SSO path cannot govern.
+Keep **SailPoint IdentityIQ** for humans and classic access. Keep **AccuKnox** for AI/runtime security. Fund a **new L4 agentic identity / IGA** capability (SailPoint Agentic Fabric and/or peers) because agents are a new identity type that today’s IIQ + AD-group + Keycloak SSO path cannot govern.
 
 ---
 
-## Macro stack (do not collapse into "AI Security")
+## Macro stack (do not collapse into “AI Security”)
 
-| Layer | Question answered | Today (enterprise example) |
+| Layer | Question answered | Today at the enterprise |
 | --- | --- | --- |
 | **L1** AI / runtime security | Is this AI/workload behavior safe? | **AccuKnox** (other team) |
 | **L2** Workload identity | Which compute/process is calling? | Cloud IAM / K8s SA / etc. (partial) |
@@ -41,13 +41,13 @@ A single agent tool call mixes: runtime + agent principal + human represented + 
 | Classic app AD-group provisioning | Entitlements too coarse for tool/MCP |
 | | Quarterly cert ≠ machine-speed change |
 | | Disable AD account ≠ stop runtime + revoke short-lived tokens |
-| | Audit strong on "who has rights"; weak on "this call: user→agent→tool→resource" |
+| | Audit strong on “who has rights”; weak on “this call: user→agent→tool→resource” |
 
 **Current access path (confirmed):** IIQ requests app **AD group(s)** → user SSO via **Keycloak (OIDC)** → Keycloak returns AD groups → app authorizes by group. That is human/app login—not agent JIT/OBO/tool authorization.
 
 ---
 
-## What "new solution" must prove (PoC bar)
+## What “new solution” must prove (PoC bar)
 
 Within ~6 months we may need shortlist / PoC. Pass criteria:
 
@@ -56,7 +56,7 @@ Within ~6 months we may need shortlist / PoC. Pass criteria:
 3. **Tool / MCP-level** authorization (not only app login)
 4. **Dual audit:** user → agent → resource (per action)
 5. **Kill switch** / immediate revoke with evidence
-6. Clear **RACI vs AccuKnox** (no duplicate "AI security" buy)
+6. Clear **RACI vs AccuKnox** (no duplicate “AI security” buy)
 
 ---
 
@@ -77,7 +77,7 @@ Within ~6 months we may need shortlist / PoC. Pass criteria:
 ## Five-slide narrative
 
 1. Keep IIQ for people and classic access.  
-2. Agentic AI means one action ≠ one human entitlement—IIQ's model is insufficient alone.  
+2. Agentic AI means one action ≠ one human entitlement—IIQ’s model is insufficient alone.  
 3. AccuKnox already covers L1 (prompt / container / runtime).  
 4. Remaining gap is **L4 agentic identity governance**.  
 5. Evaluate Agentic Fabric + peers as **complement to IIQ + AccuKnox**, replacing neither.

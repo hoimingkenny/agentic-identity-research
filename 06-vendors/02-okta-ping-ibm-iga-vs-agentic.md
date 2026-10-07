@@ -3,7 +3,7 @@
 **Audience:** Kenny (SailPoint IIQ engineer, ~1yr; finance/enterprise)  
 **Research date:** 2026-09-22 (HKT)  
 **Scope:** Docs/primary sources only. Mark **GA / EA / Preview / Research / Marketing** carefully.  
-**Baseline:** SailPoint IIQ (and ISC where noted) as Kenny's IGA system of record.
+**Baseline:** SailPoint IIQ (and ISC where noted) as Kenny’s IGA system of record.
 
 ---
 
@@ -12,7 +12,7 @@
 | Vendor | Traditional IGA strength | Agentic strength (as of 2026-09-22) | Best fit | Biggest gap |
 | --- | --- | --- | --- | --- |
 | **Okta** | **Moderate (IAM-first).** Workforce Identity + Identity Governance: access request, certifications, lifecycle for Okta/SCIM-connected apps. Not SailPoint-class SoD/entitlement depth over hybrid/legacy. | **Strongest shipped agent IdP story among the three.** Okta for AI Agents **GA (~2026-04-30)**; Auth0 for AI Agents **GA (2025-11)**; XAA/ID-JAG + Auth for MCP **GA**; A2A Connections **GA**; Agent Gateway still **Research**; Resource Access Certs for Agents **EA**. | Finance orgs that already run Okta Workforce as IdP and need a vendor-neutral **agent identity + runtime PEP** layer beside IIQ. | Traditional IGA depth vs IIQ; Agent Gateway not GA; agent certifications still EA; OIG coverage limited by Okta-connected/SCIM reach. |
-| **Ping Identity** | **Moderate–good on AM; lighter native IGA.** PingOne / AIC / PingFederate / PingDirectory strong for AM/federation/CIAM/workforce. PingOne Identity Governance exists (requests, certs, SoD, JML). Deep IGA often via **SailPoint partnership**, not replace-IIQ. | **Strongest runtime-first agent stack that is GA.** Identity for AI **GA by 2026-03-31** (Agent IAM Core + Agent Gateway + Agent Detection). May-2026 Agent Discovery/Governance + Agent Privilege announced; availability caveats. | Orgs already on Ping (esp. AIC/ForgeRock lineage) needing **token-exchange OBO + MCP gateway PEP** now; complements IIQ rather than replacing it. | Not a SailPoint-class IGA SoR; Agent Governance/Privilege packaging vs shipped SKUs needs AE confirmation; less "shadow agent discovery" marketing maturity than Okta. |
+| **Ping Identity** | **Moderate–good on AM; lighter native IGA.** PingOne / AIC / PingFederate / PingDirectory strong for AM/federation/CIAM/workforce. PingOne Identity Governance exists (requests, certs, SoD, JML). Deep IGA often via **SailPoint partnership**, not replace-IIQ. | **Strongest runtime-first agent stack that is GA.** Identity for AI **GA by 2026-03-31** (Agent IAM Core + Agent Gateway + Agent Detection). May-2026 Agent Discovery/Governance + Agent Privilege announced; availability caveats. | Orgs already on Ping (esp. AIC/ForgeRock lineage) needing **token-exchange OBO + MCP gateway PEP** now; complements IIQ rather than replacing it. | Not a SailPoint-class IGA SoR; Agent Governance/Privilege packaging vs shipped SKUs needs AE confirmation; less “shadow agent discovery” marketing maturity than Okta. |
 | **IBM** | **Strongest traditional IGA of the three.** IBM Verify Identity Governance (IVIG; ISIM/ISVG lineage) — lifecycle, compliance, SoD (incl. SAP-oriented), analytics. Closer to SailPoint-class IGA than Okta/Ping native IGA. | **Earliest / vapor-risk for production agentic.** IBM Agent Identity **Public Preview (~2026-09-01)** in Verify; watsonx Orchestrate Agent Identity **private preview (~2026-09-21)**. Docs exist; **not GA**. | IBM-centric estates (Verify + Vault + watsonx Orchestrate) willing to EAP; identity-fabric story with Entra/Okta for humans. | Agentic not production-ready; preview APIs/UI evolving; finance production kill-switch/audit chain not yet a buy decision. |
 
 ---
@@ -33,7 +33,7 @@
 | --- | --- | --- |
 | **Okta for AI Agents / Govern Agentic Identity** | **GA** — product pages state GA; investor/blog point to availability **~2026-04-30** (blog dated 29 Apr 2026) | [Product](https://www.okta.com/products/govern-ai-agent-identity/); [GA blog](https://www.okta.com/en-ca/blog/ai/okta-for-ai-agents-general-availability/); [Investor PR blueprint](https://investor.okta.com/news-and-events/news-releases/news-details/2026/Okta-Announces-New-Blueprint-for-the-Secure-Agentic-Enterprise/default.aspx) |
 | Discover / register agents + human owner in Universal Directory | **GA** (part of Okta for AI Agents) | Same |
-| Shadow AI discovery (OAuth consent grants; managed Chrome) | **GA** (browser expansion "coming soon") | GA blog |
+| Shadow AI discovery (OAuth consent grants; managed Chrome) | **GA** (browser expansion “coming soon”) | GA blog |
 | Kill switch / agent deactivation + Universal Logout for agents | **GA** | Product FAQ + investor PR |
 | Access request / certify agent access | Core workflows **GA**; **Resource Access Certifications for AI Agents** = **Early Access** (Jul 2026) | [Jul 2026 newsroom](https://www.okta.com/newsroom/articles/okta-july-2026-product-innovations/) |
 | Short-lived tokens; MCP servers as governed resources; secrets/service accounts | **GA** (resource connection types in GA blog) | GA blog |
@@ -43,7 +43,7 @@
 | **Agent as Principal / Agent SSO** | Framed under Okta for AI Agents / XAA agent identity (treat agents as first-class principals) | Product + XAA docs |
 | **Agent Gateway** (runtime identity-native MCP/tool proxy) | **Research release** — request via Research Partner Program; **not GA** as of Jul 2026 newsroom | [Agent Gateway blog](https://www.okta.com/blog/product-innovation/agent-gateway-runtime-governance/); Jul 2026 newsroom |
 | Agent-to-Agent Connections | **GA** (Jul 2026) | Jul 2026 newsroom |
-| FedRAMP/HIPAA SKU caveats | Separate "Okta for AI Agents - Core" for regulated; some features (ISPM, Privileged Access, some secret connections) **not yet** in regulated SKU | Product page footnote |
+| FedRAMP/HIPAA SKU caveats | Separate “Okta for AI Agents - Core” for regulated; some features (ISPM, Privileged Access, some secret connections) **not yet** in regulated SKU | Product page footnote |
 
 **Runtime vs governance split (Okta):** Governance/identity plane (directory, ownership, certifications, kill switch) is largely **GA**. Deep **runtime PEP** for arbitrary third-party agents without code changes = **Agent Gateway (Research)**. XAA/ID-JAG + Auth0 MCP are the standards-based path available now for apps that implement the exchange.
 
@@ -60,7 +60,7 @@
 - **Core strength = access management + federation + CIAM/workforce**, not classic on-prem IGA boxes like IIQ.
 - Stack: **PingOne**, **PingOne Advanced Identity Cloud (AIC)** (ForgeRock lineage), **PingFederate**, **PingDirectory**, DaVinci orchestration, PingOne Protect.
 - **PingOne Identity Governance:** access requests, certifications/micro-certs, SoD, lifecycle signals/provisioning, AI-assisted review ([capability page](https://www.pingidentity.com/en/capability/identity-governance.html); AIC IGA docs exist).
-- **Market reality:** Many enterprises keep **SailPoint for deep IGA** and Ping for AM; Ping marketplace still lists SailPoint IdentityNow connectors — partnership model, not "Ping = IIQ replacement."
+- **Market reality:** Many enterprises keep **SailPoint for deep IGA** and Ping for AM; Ping marketplace still lists SailPoint IdentityNow connectors — partnership model, not “Ping = IIQ replacement.”
 
 #### Agentic capabilities
 
@@ -73,11 +73,11 @@
 | HITL via CIBA | **GA** (docs) | PingOne AI Agents docs |
 | **Agent Gateway** (PingGateway MCP filters: audit, protection, validation) | **GA** with Identity for AI | Press + release notes |
 | **Agent Detection** (PingOne Protect — CUA / agentic traffic) | **GA** via Protect | Press + release notes |
-| Agent Discovery & Governance (lifecycle, ownership, audit) | Announced **2026-05-27**; press notes *"certain capabilities subject to availability"* — treat as **shipped-or-rolling; verify SKU with AE** | [Press 2026-05-27](https://press.pingidentity.com/2026-05-27-Ping-Identity-Redefines-the-Identity-Control-Plane-for-the-Agentic-Enterprise) |
+| Agent Discovery & Governance (lifecycle, ownership, audit) | Announced **2026-05-27**; press notes *“certain capabilities subject to availability”* — treat as **shipped-or-rolling; verify SKU with AE** | [Press 2026-05-27](https://press.pingidentity.com/2026-05-27-Ping-Identity-Redefines-the-Identity-Control-Plane-for-the-Agentic-Enterprise) |
 | **Agent Privilege** (JIT access for desktop/coding agents; secrets not exposed to agent) | Same May-2026 announcement; product page exists — **confirm GA vs limited availability** | [Agent Privilege](https://www.pingidentity.com/en/product/agent-privilege.html); May press |
-| "Agentic IAM" messaging | Productized as **Identity for AI / Agent IAM Core** — **not vapor** for Core/Gateway/Detection; Governance/Privilege need availability check | Above |
+| “Agentic IAM” messaging | Productized as **Identity for AI / Agent IAM Core** — **not vapor** for Core/Gateway/Detection; Governance/Privilege need availability check | Above |
 
-**Marketing vs shipped:** Agent IAM Core + Agent Gateway + Agent Detection are the clearest **GA** triad. Broader "Agent Governance / Privilege / programmable identity" May messaging is directionally real but **availability-caveated** — do not treat entire May deck as finance-production without AE confirmation.
+**Marketing vs shipped:** Agent IAM Core + Agent Gateway + Agent Detection are the clearest **GA** triad. Broader “Agent Governance / Privilege / programmable identity” May messaging is directionally real but **availability-caveated** — do not treat entire May deck as finance-production without AE confirmation.
 
 #### vs SailPoint IIQ/ISC (one-liner)
 
@@ -116,7 +116,7 @@
 
 Problem split Kenny should use in design reviews:
 
-| Concern | What "good" looks like | Okta | Ping | IBM |
+| Concern | What “good” looks like | Okta | Ping | IBM |
 | --- | --- | --- | --- | --- |
 | **Owner + inventory** | Every agent has human owner; discoverable registry | **GA** Universal Directory + shadow discovery | **GA** Agent IAM Core owners; Discovery/Governance expanding | **Preview** Agent Registry |
 | **Lifecycle (JML for agents)** | Onboard → review → disable/decommission | **GA** workflows + kill switch | **GA** enable/disable; broader lifecycle gov rolling | **Preview** lifecycle & govern pillar |
@@ -132,7 +132,7 @@ Problem split Kenny should use in design reviews:
 
 ## 4. Recommendation posture — finance org that already has IIQ
 
-**Do not replace IIQ** with Okta OIG, Ping IGA, or IBM IVIG "because agents." Agents do not erase SAP SoD, entitlement certification, or hybrid connectors.
+**Do not replace IIQ** with Okta OIG, Ping IGA, or IBM IVIG “because agents.” Agents do not erase SAP SoD, entitlement certification, or hybrid connectors.
 
 | Posture | When |
 | --- | --- |
@@ -141,7 +141,7 @@ Problem split Kenny should use in design reviews:
 | **Ignore / watch — IBM Agent Identity** | Unless heavy Verify + watsonx + Vault and EAP appetite. Re-evaluate at **GA**. IVIG only if IBM IGA strategy already exists (rare if IIQ is SoR). |
 | **Ignore as IIQ replacement** | All three for traditional deep IGA in a bank/broker that already standardized on SailPoint. |
 
-**Suggested architecture for Kenny's peers:**
+**Suggested architecture for Kenny’s peers:**
 
 1. **IIQ** = SoR for human identities, roles, SoD, access certs, classic service accounts.  
 2. **Existing IdP** (often Okta or Ping) = SSO + MFA + (now) **agent principals**.  

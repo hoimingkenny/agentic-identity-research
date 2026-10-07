@@ -1,19 +1,25 @@
 # Agentic Identity — Enterprise Landing Research
 
-Docs-only research for agent architectures, identity gaps, enterprise agent types, why traditional IAM/security are not enough, vendor comparisons, and landing playbooks. Content is employer-agnostic and applicable to finance/enterprise contexts.
+Docs-only research pack. **Employer-agnostic.**
 
-**Start here**
-1. [DISCUSSION-DIGEST.md](./DISCUSSION-DIGEST.md)  
-2. [00-EXECUTIVE-SUMMARY.md](./00-EXECUTIVE-SUMMARY.md)  
-3. [00a-identity-problems-from-ai-architecture.md](./00a-identity-problems-from-ai-architecture.md)  
-4. [00b-enterprise-agent-landscape.md](./00b-enterprise-agent-landscape.md)  
-5. [00c-why-govern-agents-and-why-identity.md](./00c-why-govern-agents-and-why-identity.md)  
-6. [00d-why-traditional-security-not-enough.md](./00d-why-traditional-security-not-enough.md)  
-7. [01-ai-architecture-patterns.md](./01-ai-architecture-patterns.md)  
-8. [02-vendor-matrix-tier1.md](./02-vendor-matrix-tier1.md)  
-9. [03-landing-playbook-skeleton.md](./03-landing-playbook-skeleton.md)  
-10. [04-company-whitepaper-outline.md](./04-company-whitepaper-outline.md)  
-11. [05-architect-qa-checklist.md](./05-architect-qa-checklist.md)  
-12. [06-ping-identity-for-ai-notes.md](./06-ping-identity-for-ai-notes.md) — **Ping Identity for AI module**  
+## Start here
 
-**Extended research:** [`from-lab-bot/`](./from-lab-bot/) — deeper binding-point matrices, vendor comparisons (Okta/Ping/IBM vs traditional IGA), AI security vs governance framing, management 1-pagers, and PoC shortlist matrices (docs 01–07).
+1. **[LOGIC-CHAIN.md](./LOGIC-CHAIN.md)** — locked 1–5 question spine  
+2. **[DOC-INDEX.md](./DOC-INDEX.md)** — each doc's question + one-line summary  
+3. Then follow sections **01 → 05** in order  
+4. Optional depth: **06 vendors**, **07 landing**  
+5. **[appendix/](./appendix/)** — digests, legacy notes, deprecated duplicates  
+
+## Logic chain (summary)
+
+| # | Section | Primary question |
+| --- | --- | --- |
+| 1 | [01-why-central-iga/](./01-why-central-iga/) | Central IGA’s role in traditional cybersecurity |
+| 2 | [02-traditional-iga-limits/](./02-traditional-iga-limits/) | Limits of traditional IGA (still required); discovery gaps |
+| 3 | [03-agentic-iga-in-ai-frameworks/](./03-agentic-iga-in-ai-frameworks/) | Where agentic IGA sits in published AI frameworks |
+| 4 | [04-agentic-iga-scope/](./04-agentic-iga-scope/) | Hard In / Out / Shared scope |
+| 5 | [05-agents-architecture-operations/](./05-agents-architecture-operations/) | Agents, architecture, how identity operates |
+
+## Path map
+
+See [MIGRATION.md](./MIGRATION.md) for old → new paths (including removal of parallel `from-lab-bot/` duplicates).

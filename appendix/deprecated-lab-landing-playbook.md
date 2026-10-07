@@ -1,7 +1,7 @@
 # Enterprise Agentic Identity — Landing Playbook Skeleton
 
 **Research date:** 2026-09-15  
-**Audience:** Kenny (IAM + agentic AI; finance/enterprise-relevant)  
+**Audience:** Kenny (IAM + agentic AI; finance/finance-relevant)  
 **Purpose:** Phases only — architecture → controls. No full prose playbook yet.  
 **Companion:** `02-vendor-matrix-tier1.md`
 
